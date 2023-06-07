@@ -1,16 +1,7 @@
-import './App.css'
-import {Sleep1s} from "./components/Sleep1s"
-import {ShowData} from "./components/ShowData"
+import { startTransition, Suspense, useState } from "react";
+import "./App.css";
+import { ShowData } from "./components/ShowData";
 
-import { useTransition, startTransition, Suspense, useState } from 'react';
-
-// function App() {
-//   return (
-//     <Suspense fallback={<p>Loading...</p>}>
-//       <Sleep1s />
-//     </Suspense>
-//   )
-// }
 function App() {
   const [counter, setCounter] = useState(0);
   return (
@@ -24,36 +15,16 @@ function App() {
           className="border p-1"
           onClick={() => {
             startTransition(() => {
-              setCounter(counter + 1);
+              // setCounter(counter + 1);
+              setCounter((c) => c + 1); // ボタンを連打した時の挙動が変わる
             });
           }}
         >
-          startTransition is あり{counter}
+          Counter is {counter}
         </button>
       </p>
     </div>
   );
 }
-// function App() {
-//   const [counter, setCounter] = useState(0);
-//   return (
-//     <div className="text-center">
-//       <h1 className="text-2xl">React App!</h1>
-//       <Suspense fallback={<p>Loading...</p>}>
-//         <ShowData dataKey={counter} />
-//       </Suspense>
-//       <p>
-//         <button
-//           className="border p-1"
-//           onClick={() => {
-//               setCounter(counter + 1);
-//           }}
-//         >
-//           startTransition is なし {counter}
-//         </button>
-//       </p>
-//     </div>
-//   );
-}
 
-export default App
+export default App;
